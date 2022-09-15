@@ -1,7 +1,11 @@
 ﻿@page "/"
+
 @inject IToastService toastService
 @inject NavigationManager NavigationManager
+<ToastTypes />
+<button class="btn btn-primary" @onclick="ClearAll">Clear All Toasts</button>
 
+@*
 <h1>Blazored Toasts</h1>
 
 <button class="btn btn-info" @onclick="@(() => toastService.ShowInfo("I'm an INFO message"))">Info Toast</button>
@@ -13,47 +17,47 @@
     Info Toast with custom action on click
 </button>
 <hr />
-
+*@
 @*<h1>Blazored Toasts - Custom Component</h1>
 
 <button class="btn btn-primary" @onclick="@(() => toastService.ShowToast<MyToastComponent>(new ToastInstanceSettings(5, true)))">Custom Toast</button>
 <button class="btn btn-secondary" @onclick="@(() => toastService.ShowToast<MyToastComponent>(_toastParameters, new ToastInstanceSettings(5, true)))">Custom Toast with parameters</button>
 <hr />*@
 
-<h1>Blazored Toasts - Remove Toasts</h1>
+@*<h1>Blazored Toasts - Remove Toasts</h1>
 
-<button class="btn btn-primary" @onclick="ClearAll">Clear All Toasts</button>
 <button class="btn btn-warning" @onclick="ClearWarnings">Clear Warning Toasts</button>
 <button class="btn btn-info" @onclick="ClearInfos">Clear Info Toasts</button>
 <button class="btn btn-secondary" @onclick="ClearCustom">Clear Custom Toasts</button>
+*@
 
 @code
 {
-    private ToastParameters _toastParameters;
+    //private ToastParameters _toastParameters;
 
-    protected override void OnInitialized()
-    {
-        _toastParameters = new ToastParameters();
-        //_toastParameters.Add(nameof(MyToastComponent.Title), "I'm a custom toast component with parameters");
-        //_toastParameters.Add(nameof(MyToastComponent.ToastParam), "I'm a parameter");
-    }
+    //protected override void OnInitialized()
+    //{
+    //    _toastParameters = new ToastParameters();
+    //    //_toastParameters.Add(nameof(MyToastComponent.Title), "I'm a custom toast component with parameters");
+    //    //_toastParameters.Add(nameof(MyToastComponent.ToastParam), "I'm a parameter");
+    //}
 
-    private void OnShowHtml()
-    {
-        RenderFragment message =@<text>I'm an <em>INFO</em> message with some <strong>bold</strong> text</text>
-    ;
-        toastService.ShowToast(ToastLevel.Info, message);
-    }
+    //private void OnShowHtml()
+    //{
+    //    RenderFragment message =@<text>I'm an <em>INFO</em> message with some <strong>bold</strong> text</text>
+    //;
+    //    toastService.ShowToast(ToastLevel.Info, message);
+    //}
 
     private void ClearAll()
         => toastService.ClearAll();
 
-    private void ClearWarnings()
-        => toastService.ClearToasts(ToastLevel.Warning);
+    //private void ClearWarnings()
+    //    => toastService.ClearToasts(ToastLevel.Warning);
 
-    private void ClearInfos()
-        => toastService.ClearInfoToasts();
+    //private void ClearInfos()
+    //    => toastService.ClearInfoToasts();
 
-    private void ClearCustom()
-        => toastService.ClearCustomToasts();
+    //private void ClearCustom()
+    //    => toastService.ClearCustomToasts();
 }

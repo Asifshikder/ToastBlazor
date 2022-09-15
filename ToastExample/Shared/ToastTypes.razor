@@ -1,0 +1,59 @@
+﻿@using Blaze.Toast.Configuration
+@inject IToastService toastService
+<BlazeToasts Position="ToastPosition.TopRight"
+             Timeout="50"
+             ErrorIcon="fa-solid fa-xmark"
+             InfoIcon="fa-solid fa-bell"
+             SuccessIcon="fa-solid fa-circle-check"
+             WarningIcon="fa-solid fa-triangle-exclamation"
+             ShowProgressBar="@true"
+             ShowCloseButton="@true">
+  @*  <CloseButtonContent>
+        <div>
+            <span class="myCloseButtonStyleClass">&times;</span>
+        </div>
+    </CloseButtonContent>*@
+</BlazeToasts>
+
+
+<div class="container">
+    <h4>Toast Types</h4>
+    <div>
+        <button class="btn btn-info" @onclick="@(() => toastService.ShowInfo("Info toast example","Info Title"))">Info Toast</button>
+        <button class="btn btn-success" @onclick="@(() => toastService.ShowSuccess("I'm a SUCCESS message with a custom heading", "Congratulations!"))">Success Toast</button>
+        <button class="btn btn-warning" @onclick="@(() => toastService.ShowWarning("I'm a WARNING message"))">Warning Toast</button>
+        <button class="btn btn-danger" @onclick="@(() => toastService.ShowError("I'm an ERROR message"))">Error Toast</button>
+        <button class="btn btn-info" @onclick="@OnShowHtml">Info Toast with HTML</button>
+    </div>
+   
+
+</div>
+
+@code
+{
+    private ToastParameters _toastParameters;
+
+    protected override void OnInitialized()
+    {
+        _toastParameters = new ToastParameters();
+    }
+
+    private void OnShowHtml()
+    {
+        RenderFragment message =@<text>I'm an <em>INFO</em> message with some <strong>bold</strong> text</text>
+    ;
+        toastService.ShowToast(ToastLevel.Info, message);
+    }
+
+    private void ClearAll()
+        => toastService.ClearAll();
+
+    private void ClearWarnings()
+        => toastService.ClearToasts(ToastLevel.Warning);
+
+    private void ClearInfos()
+        => toastService.ClearInfoToasts();
+
+    private void ClearCustom()
+        => toastService.ClearCustomToasts();
+}

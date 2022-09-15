@@ -17,17 +17,27 @@
 }
 else
 {
-
-    <div class="blaze-toast blaze-toast-container @ToastSettings.BaseClass @ToastSettings.AdditionalClasses" @onclick="ToastClick">
-
-        @if (!string.IsNullOrWhiteSpace(ToastSettings.Icon))
+   
+    <div class="blaze-toast blaze-toast-container @*@ToastSettings.BaseClass*@ @ToastSettings.AdditionalClasses" @onclick="ToastClick">
+        <div class="@ToastSettings.BaseClass d-flex justify-content-between toast-head">
+            <div>
+                <i class="@ToastSettings.Icon"></i>
+            </div>
+            <div>
+                <h6 class="text-light">@ToastSettings.Heading</h6>
+            </div>
+            <div>
+                <button @onclick=@Close class="blaze-toast-close"><i class="fa-regular fa-circle-xmark"></i></button>
+            </div>
+        </div>
+       @* @if (!string.IsNullOrWhiteSpace(ToastSettings.Icon))
         {
             <div class="blaze-toast-icon">
                 <i class="@ToastSettings.Icon" aria-hidden="true"></i>
             </div>
-        }
+        }*@
 
-        <div class="blaze-toast-body">
+       @* <div class="blaze-toast-body">
             <div class="blaze-toast-header">
                 <h5 class="blaze-toast-heading">@ToastSettings.Heading</h5>
                 @if (ShowCloseButton)
@@ -51,12 +61,12 @@ else
             </div>
             <p class="blaze-toast-message">@ToastSettings.Message</p>
         </div>
-
-        @if (ToastSettings.ShowProgressBar)
+*@
+       @* @if (ToastSettings.ShowProgressBar)
         {
             <div class="blaze-toast-progressbar">
                 <span style="width: @(_progress)%;"></span>
             </div>
-        }
+        }*@
     </div>
 }
