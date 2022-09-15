@@ -6,6 +6,14 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Title>BlazorToast</Title>
     <Authors>Asif Rabbani</Authors>
+    <Company>Asif Rabbani</Company>
+    <Product>Blazor.Tast</Product>
+    <Description>Blazor toast libaries</Description>
+    <PackageProjectUrl>https://github.com/Asifshikder/ToastBlazor</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Asifshikder/ToastBlazor</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>blazor;toast;blazortoast;toaster;notification</PackageTags>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
 
