@@ -1,0 +1,20 @@
+﻿@if (ToastList.Any())
+{
+    <div class="blaze-toast-container @PositionClass">
+        <CascadingValue Value=this IsFixed="true">
+            @foreach (var toast in ToastList.OrderBy(x=>x.TimeStamp))
+            {
+                if (toast.BlazeToast is object)
+                {
+                    <BlazeToast @key="toast" ToastComponentSettings="toast.ToastInstanceSettings" ToastId="toast.Id" Timeout="toast.ToastInstanceSettings.Timeout" >
+                        @toast.BlazeToast
+                    </BlazeToast>
+                }
+                else
+                {
+                    <BlazeToast @key="toast" ToastSettings="toast.ToastSettings" ToastId="toast.Id" Timeout="Timeout" />
+                }
+            }
+        </CascadingValue>
+    </div>
+}
