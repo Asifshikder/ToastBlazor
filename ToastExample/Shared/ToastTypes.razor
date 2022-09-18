@@ -1,32 +1,24 @@
 ﻿@using Blaze.Toast.Configuration
 @inject IToastService toastService
-<BlazeToasts Position="ToastPosition.TopRight"
-             Timeout="50"
-             ErrorIcon="fa-solid fa-xmark"
-             InfoIcon="fa-solid fa-bell"
-             SuccessIcon="fa-solid fa-circle-check"
-             WarningIcon="fa-solid fa-triangle-exclamation"
-             ShowProgressBar="@true"
-             ShowCloseButton="@true">
-  @*  <CloseButtonContent>
-        <div>
-            <span class="myCloseButtonStyleClass">&times;</span>
-        </div>
-    </CloseButtonContent>*@
-</BlazeToasts>
+
 
 
 <div class="container">
     <h4>Toast Types</h4>
     <div>
-        <button class="btn btn-info" @onclick="@(() => toastService.ShowInfo("Info toast example","Info Title"))">Info Toast</button>
-        <button class="btn btn-success" @onclick="@(() => toastService.ShowSuccess("I'm a SUCCESS message with a custom heading", "Congratulations!"))">Success Toast</button>
-        <button class="btn btn-warning" @onclick="@(() => toastService.ShowWarning("I'm a WARNING message"))">Warning Toast</button>
-        <button class="btn btn-danger" @onclick="@(() => toastService.ShowError("I'm an ERROR message"))">Error Toast</button>
-        <button class="btn btn-info" @onclick="@OnShowHtml">Info Toast with HTML</button>
+        <button class="btn btn-success" @onclick="@(() => toastService.ShowSuccess("Success toast example", "Success"))">Success</button>
+        <button class="btn btn-info" @onclick="@(() => toastService.ShowInfo("Primary toast example","Primary"))">Primary</button>
+        <button class="btn btn-warning" @onclick="@(() => toastService.ShowWarning("Warning toast example","Warning"))">Warning</button>
+        <button class="btn btn-danger" @onclick="@(() => toastService.ShowError("Error toast example"))">Error</button>
     </div>
-   
-
+    <br />
+    <h4>Toast With Custom HTML</h4>
+    <div>
+        <button class="btn btn-primary" @onclick="@ToastPrimaryWithHtml">Primary</button>
+        <button class="btn btn-succeess" @onclick="@ToastSuccessWithHtml">Success</button>
+        <button class="btn btn-warning" @onclick="@ToastWarningWithHtml">Warning</button>
+        <button class="btn btn-danger" @onclick="@ToastDangerWithHtml">Danger</button>
+    </div>
 </div>
 
 @code
@@ -38,10 +30,24 @@
         _toastParameters = new ToastParameters();
     }
 
-    private void OnShowHtml()
+    private void ToastWarningWithHtml()
     {
-        RenderFragment message =@<text>I'm an <em>INFO</em> message with some <strong>bold</strong> text</text>
-    ;
+        RenderFragment message =@<text>This is and <em>Example</em> of <strong>HTML TOAST</strong></text>;
+        toastService.ShowToast(ToastLevel.Warning, message);
+    }
+    private void ToastDangerWithHtml()
+    {
+        RenderFragment message =@<text>This is and <em>Example</em> of <strong>HTML TOAST</strong></text>;
+        toastService.ShowToast(ToastLevel.Error, message);
+    }
+    private void ToastSuccessWithHtml()
+    {
+        RenderFragment message =@<text>This is and <em>Example</em> of <strong>HTML TOAST</strong></text>;
+        toastService.ShowToast(ToastLevel.Success, message);
+    }
+    private void ToastPrimaryWithHtml()
+    {
+        RenderFragment message =@<text>This is and <em>Example</em> of <strong>HTML TOAST</strong></text>;
         toastService.ShowToast(ToastLevel.Info, message);
     }
 
